@@ -8,7 +8,7 @@ import (
 )
 
 func InitMq(conf *config.Config) *amqp091.Connection {
-	conn, err := amqp091.Dial(conf.Server.Host)
+	conn, err := amqp091.Dial(conf.RabbitMQ.Primary.ConnString)
 	if err != nil {
 		log.Panic("failed to connect to RabbitMQ service:", err)
 	}

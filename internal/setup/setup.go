@@ -24,3 +24,13 @@ func InitExternalServices(conf *config.Config) *ExternalServices {
 		RabbitMq: mq,
 	}
 }
+
+func InitCoreServices(externalService *ExternalServices) *CoreServices {
+	repository := NewRepository(externalService.Postgres)
+	service := NewService(repository)
+	handler := NewHandler(service)
+
+	return &CoreServices{
+		Handler: *handler,
+	}
+}

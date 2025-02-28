@@ -2,6 +2,7 @@ package main
 
 import (
 	"github.com/gunawanpras/async-email-mq-service/config"
+	"github.com/gunawanpras/async-email-mq-service/delivery/server"
 	"github.com/gunawanpras/async-email-mq-service/internal/setup"
 )
 
@@ -16,4 +17,8 @@ func main() {
 	defer externalService.RabbitMq.Close()
 
 	// init core services
+	coreService := setup.InitCoreServices(externalService)
+
+	// init server
+	server.Up(coreService.Handler, conf.Server)
 }

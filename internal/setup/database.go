@@ -10,7 +10,7 @@ import (
 )
 
 func InitPostgres(conf *config.Config) *sqlx.DB {
-	pg, err := sqlx.Connect("postgres", conf.Postgres.Primary.ConnString)
+	pg, err := sqlx.Connect("postgres", conf.Postgre.Primary.ConnString)
 	if err != nil {
 		log.Panic("failed to open postgre client for project-mq service:", err)
 	}
@@ -19,9 +19,9 @@ func InitPostgres(conf *config.Config) *sqlx.DB {
 		log.Panic("failed to ping PostgreSQL: %w", err)
 	}
 
-	pg.SetMaxOpenConns(conf.Postgres.Primary.MaxOpenConn)
-	pg.SetMaxIdleConns(conf.Postgres.Primary.MaxIdleConn)
-	pg.SetConnMaxLifetime(time.Second * time.Duration(conf.Postgres.Primary.MaxConnLifeTimeInSecond))
+	pg.SetMaxOpenConns(conf.Postgre.Primary.MaxOpenConn)
+	pg.SetMaxIdleConns(conf.Postgre.Primary.MaxIdleConn)
+	pg.SetConnMaxLifetime(time.Second * time.Duration(conf.Postgre.Primary.MaxConnLifeTimeInSecond))
 
 	return pg
 }

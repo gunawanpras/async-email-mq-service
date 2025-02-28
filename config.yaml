@@ -1,12 +1,13 @@
 server:
-    name: "project-mq-service"
+    name: "async-email-mq-service"
     host: "0.0.0.0"
     port: 1010
 postgre:
     primary:
-        connString: "postgres://postgres:postgres@project-mq-pg-14:5432/database?sslmode=disable"
+        connString: "postgres://postgres:postgres@127.0.0.1:54320/database?sslmode=disable"        
         maxOpenConn: 350
         maxIdleConn: 10
         maxConnLifeTimeInSecond: 10
-mq:
-    connString: "amqp://guest:guest@project-mq-rabbitmq:5672/"
+rabbitmq:
+    primary:
+        connString: "amqp://guest:guest@127.0.0.1:5672"

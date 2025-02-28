@@ -3,7 +3,8 @@ package config
 type (
 	Config struct {
 		Server   ServerConfig `yaml:"server"`
-		Postgres PostgresList `yaml:"postgres"`
+		Postgre  PostgreList  `yaml:"postgre"`
+		RabbitMQ RabbitMQList `yaml:"rabbitmq"`
 	}
 
 	ServerConfig struct {
@@ -12,7 +13,7 @@ type (
 		Port int    `yaml:"port"`
 	}
 
-	PostgresList struct {
+	PostgreList struct {
 		Primary DatabaseConfig `yaml:"primary"`
 	}
 
@@ -21,5 +22,13 @@ type (
 		MaxOpenConn             int    `yaml:"maxOpenConn"`
 		MaxIdleConn             int    `yaml:"maxIdleConn"`
 		MaxConnLifeTimeInSecond int    `yaml:"maxConnLifeTimeInSecond"`
+	}
+
+	RabbitMQList struct {
+		Primary RabbitMQConfig `yaml:"primary"`
+	}
+
+	RabbitMQConfig struct {
+		ConnString string `yaml:"connString"`
 	}
 )
