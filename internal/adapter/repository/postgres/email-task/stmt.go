@@ -48,3 +48,16 @@ func (repo *EmailTaskRepository) prepareGetUserByEmail() {
 	}
 	repo.statement.GetUserByEmail = stmt
 }
+
+func (repo *EmailTaskRepository) prepareGetEmailTaskByID() {
+	var (
+		err  error
+		stmt *sqlx.Stmt
+		db   = repo.db.Db
+	)
+
+	if stmt, err = db.Preparex(queryGetEmailTaskByID); err != nil {
+		log.Panic("[prepareGetEmailTaskByStatus] error:", err)
+	}
+	repo.statement.GetEmailTaskByID = stmt
+}

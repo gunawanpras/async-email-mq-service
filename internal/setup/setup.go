@@ -27,7 +27,8 @@ func InitExternalServices(conf *config.Config) *ExternalServices {
 
 func InitCoreServices(externalService *ExternalServices) *CoreServices {
 	repository := NewRepository(externalService.Postgres)
-	service := NewService(repository)
+	event := NewMessageQueue(externalService.RabbitMq)
+	service := NewService(repository, event)
 	handler := NewHandler(service)
 
 	return &CoreServices{

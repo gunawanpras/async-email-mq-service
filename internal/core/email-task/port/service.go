@@ -8,4 +8,5 @@ import (
 
 type Service interface {
 	CreateEmailTask(ctx context.Context, emailTask domain.EmailTask) (res domain.EmailTask, err error)
+	ProcessEmailTask(ctx context.Context) (err error)
 }

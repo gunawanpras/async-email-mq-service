@@ -17,4 +17,10 @@ var (
 		FROM email_tasks
 		WHERE sender_email = $1 AND recipient_email = $2 AND subject = $3 AND body = $4
 	`
+
+	queryGetEmailTaskByID = `
+		SELECT id, sender_email, recipient_email, subject, body, status, retry_count, created_at, created_by
+		FROM email_tasks
+		WHERE id = $1
+	`
 )

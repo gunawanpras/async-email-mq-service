@@ -20,6 +20,19 @@ func Up(handler setup.Handler, config config.ServerConfig) {
 			},
 		},
 	)
+	// app.Use(func(c *fiber.Ctx) error {
+	// 	defer func() {
+	// 		if err := recover(); err != nil {
+	// 			stack := debug.Stack()
+	// 			log.Println("Recovered from panic:")
+	// 			log.Println(err)
+	// 			log.Println(string(stack))
+	// 			c.Status(500).SendString("Internal Server Error")
+	// 		}
+	// 	}()
+
+	// 	return c.Next()
+	// })
 	app.Use(cors.New())
 
 	NewRouter(app, handler)

@@ -9,11 +9,15 @@ type Service struct {
 	EmailTaskService emailTaskService.Service
 }
 
-func NewService(repo Repository) Service {
+func NewService(repo Repository, event MessageQueue) Service {
+
 	return Service{
 		EmailTaskService: emailTaskServiceV0.New(emailTaskServiceV0.InitAttribute{
 			Repo: emailTaskServiceV0.RepoAttribute{
 				EmailTaskRepo: repo.EmailTaskRepo,
+			},
+			MQ: emailTaskServiceV0.MQAttribute{
+				EmailTaskMQ: event.EmailTaskMQ,
 			},
 		}),
 	}

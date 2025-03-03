@@ -1,7 +1,7 @@
 package setup
 
 import (
-	emailTaskRepoPg "github.com/gunawanpras/async-email-mq-service/internal/adapter/email-task/repository/postgres"
+	emailTaskRepoPg "github.com/gunawanpras/async-email-mq-service/internal/adapter/repository/postgres/email-task"
 	emailTaskRepo "github.com/gunawanpras/async-email-mq-service/internal/core/email-task/port"
 	"github.com/jmoiron/sqlx"
 )

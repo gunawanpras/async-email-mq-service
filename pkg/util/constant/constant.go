@@ -14,6 +14,10 @@ const (
 )
 
 const (
+	EmailTaskQueueName = "email_queue"
+)
+
+const (
 	EmailTaskStatusPending = "PENDING"
 	EmailTaskStatusSent    = "SENT"
 	EmailTaskStatusFailed  = "FAILED"
@@ -28,8 +32,11 @@ const (
 	EmailTaskCreateFailed  = "failed to create email task"
 	EmailTaskGetSuccess    = "email task fetched successfully"
 	EmailTaskGetFailed     = "failed to fetch email task"
+	EmailTaskNotFound      = "email task not found"
 	EmailTaskAlreadyExist  = "email task already exist"
 	SenderEmailNotFound    = "sender email not found"
+	EmailTaskSentSuccess   = "email task sent successfully"
+	EmailTaskSentFailed    = "failed to send email task"
 )
 
 const (
@@ -51,8 +58,11 @@ var (
 		EmailTaskGetSuccess:         http.StatusOK,
 		EmailTaskGetFailed:          http.StatusInternalServerError,
 		EmailTaskAlreadyExist:       http.StatusConflict,
+		EmailTaskNotFound:           http.StatusNotFound,
 		DataNotFound:                http.StatusNotFound,
 		SenderEmailNotFound:         http.StatusNotFound,
+		EmailTaskSentSuccess:        http.StatusOK,
+		EmailTaskSentFailed:         http.StatusInternalServerError,
 		DbBeginTransactionFailed:    http.StatusInternalServerError,
 		DbRollbackTransactionFailed: http.StatusInternalServerError,
 		DbCommitTransactionFailed:   http.StatusInternalServerError,

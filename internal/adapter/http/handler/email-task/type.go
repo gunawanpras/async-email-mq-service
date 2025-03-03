@@ -5,12 +5,12 @@ import (
 )
 
 type (
-	EmailTaskHandler struct {
-		service ServiceAttribute
-	}
-
 	ServiceAttribute struct {
 		EmailTaskService port.Service
+	}
+
+	EmailTaskHandler struct {
+		service ServiceAttribute
 	}
 
 	InitAttribute struct {

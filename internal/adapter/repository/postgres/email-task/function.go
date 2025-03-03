@@ -43,6 +43,26 @@ func (repo *EmailTaskRepository) GetEmailTaskByParams(ctx context.Context, args 
 	return emailTask.ToModel(), nil
 }
 
+func (repo *EmailTaskRepository) GetEmailTaskByID(ctx context.Context, id uuid.UUID) (res domain.EmailTask, err error) {
+	var emailTask EmailTask
+
+	repo.prepareGetEmailTaskByID()
+	err = repo.statement.GetEmailTaskByID.QueryRowxContext(ctx, id).StructScan(&emailTask)
+	if err != nil {
+		if err == sql.ErrNoRows {
+			return res, errors.New(constant.DataNotFound)
+		}
+
+		return res, err
+	}
+
+	if !emailTask.Validate() {
+		return res, errors.New(constant.DbReturnedMalformedData)
+	}
+
+	return emailTask.ToModel(), nil
+}
+
 func (repo *EmailTaskRepository) GetUserByEmail(ctx context.Context, email string) (res domain.User, err error) {
 	var user User
 

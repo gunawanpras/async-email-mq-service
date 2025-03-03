@@ -15,6 +15,7 @@ type StatementList struct {
 	CreateEmailTask      *sqlx.Stmt
 	GetEmailTaskByParams *sqlx.Stmt
 	GetUserByEmail       *sqlx.Stmt
+	GetEmailTaskByID     *sqlx.Stmt
 }
 
 type InitAttribute struct {

@@ -1,6 +1,6 @@
 package setup
 
-import "github.com/gunawanpras/async-email-mq-service/internal/adapter/email-task/http/handler"
+import handler "github.com/gunawanpras/async-email-mq-service/internal/adapter/http/handler/email-task"
 
 type Handler struct {
 	EmailTaskHandler handler.Handler

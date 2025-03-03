@@ -9,6 +9,7 @@ import (
 
 type Repository interface {
 	CreateEmailTask(ctx context.Context, emailTask domain.EmailTask) (id uuid.UUID, err error)
+	GetEmailTaskByID(ctx context.Context, id uuid.UUID) (res domain.EmailTask, err error)
 	GetEmailTaskByParams(ctx context.Context, args domain.EmailTask) (res domain.EmailTask, err error)
 	GetUserByEmail(ctx context.Context, email string) (res domain.User, err error)
 }
