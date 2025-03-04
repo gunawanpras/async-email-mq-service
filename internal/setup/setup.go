@@ -2,6 +2,7 @@ package setup
 
 import (
 	"github.com/gunawanpras/async-email-mq-service/config"
+	setupClient "github.com/gunawanpras/async-email-mq-service/internal/setup/client"
 	"github.com/jmoiron/sqlx"
 	"github.com/rabbitmq/amqp091-go"
 )
@@ -16,8 +17,8 @@ type CoreServices struct {
 }
 
 func InitExternalServices(conf *config.Config) *ExternalServices {
-	pg := InitPostgres(conf)
-	mq := InitMq(conf)
+	pg := setupClient.InitPostgres(conf)
+	mq := setupClient.InitMq(conf)
 
 	return &ExternalServices{
 		Postgres: pg,
